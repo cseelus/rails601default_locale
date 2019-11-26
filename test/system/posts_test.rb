@@ -10,6 +10,9 @@ class PostsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Posts"
   end
 
+  test "visiting a Post" do
+  end
+
   test "creating a Post" do
     visit posts_url
     click_on "New Post"
@@ -20,6 +23,10 @@ class PostsTest < ApplicationSystemTestCase
 
     assert_text "Post was successfully created"
     click_on "Back"
+
+    click_on "Show", match: :first
+    assert_selector "p", text: "Title: MyString"
+    assert_current_path post_path(Post.first)
   end
 
   test "updating a Post" do
